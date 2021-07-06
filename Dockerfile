@@ -14,7 +14,7 @@ RUN apk update && apk add --no-cache \
     jq \
     coreutils
 COPY --from=builder /go/src/github.com/Azure/opa-asc-proxy/opa-asc-proxy /bin/
-COPY getimagesha.sh /
+COPY hack/getimagesha.sh /
 RUN chmod a+x /bin/opa-asc-proxy
 RUN chmod a+x /getimagesha.sh
 

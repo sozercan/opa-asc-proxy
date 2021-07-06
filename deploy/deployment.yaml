@@ -13,7 +13,7 @@ spec:
         run: opa-asc-proxy
     spec:
       containers:
-      - image: ritazh/opa-asc-proxy:0.0.1
+      - image: sozercan/opa-asc-proxy:latest
         imagePullPolicy: Always
         name: opa-asc-proxy
         env:
@@ -41,16 +41,3 @@ spec:
         - containerPort: 8090
           protocol: TCP
       restartPolicy: Always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: opa-asc-proxy
-spec:
-  ports:
-  - port: 8090
-    protocol: TCP
-    targetPort: 8090
-  selector:
-    run: opa-asc-proxy
-  sessionAffinity: None

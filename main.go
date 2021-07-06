@@ -116,8 +116,11 @@ func handle(w http.ResponseWriter, req *http.Request) {
 func handleDigest(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	image := req.URL.Query().Get("image")
-	imageSplit := strings.Split(image, "@")
+	image, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		panic(err)
+	}
+	imageSplit := strings.Split(string(image), "@")
 
 	data, err := server.Process(ctx, imageSplit[1])
 	if err != nil {
